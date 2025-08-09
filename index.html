@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terapias Integrativas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #6a8caf 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .search-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-icon:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .keywords-section {
+            background: #f7fafc;
+            border-left: 5px solid #4299e1;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .keywords-section h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .keywords-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .keyword-tag {
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .keyword-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .main-content {
+            background: white;
+            border-left: 5px solid #e53e3e;
+            padding: 30px;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .main-content h2 {
+            color: #2d3748;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .therapy-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .therapy-section:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .naturopatia { border-left-color: #38a169; }
+        .florais { border-left-color: #d69e2e; }
+        .homeopatia { border-left-color: #3182ce; }
+        .chas { border-left-color: #38b2ac; }
+        .ozonio { border-left-color: #805ad5; }
+        
+        .therapy-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .therapy-icon {
+            font-size: 1.6rem;
+        }
+        
+        .therapy-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .therapy-details {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .detail-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #e2e8f0;
+        }
+        
+        .detail-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+        
+        .detail-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fef5e7, #fed7aa);
+            border: 1px solid #f6ad55;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .highlight-title {
+            font-weight: 600;
+            color: #c05621;
+            margin-bottom: 10px;
+        }
+        
+        .highlight-content {
+            color: #744210;
+            line-height: 1.6;
+        }
+        
+        .summary-section {
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            padding: 30px;
+            margin-top: 40px;
+            border-radius: 10px;
+            border-left: 5px solid #319795;
+        }
+        
+        .summary-title {
+            color: #234e52;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .summary-content {
+            color: #2c7a7b;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+        
+        .list-item {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .list-item::before {
+            content: "•";
+            color: #4299e1;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .keywords-container {
+                justify-content: center;
+            }
+            
+            .therapy-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="search-icon">🔍</div>
+            <h1>Terapias Integrativas</h1>
+            <p>Naturopatia, Florais, Homeopatia, Chás Medicinais e Ozonioterapia</p>
+        </div>
+        
+        <div class="content">
+            <div class="keywords-section">
+                <h2>Keywords</h2>
+                <div class="keywords-container">
+                    <div class="keyword-tag">🌿 Naturopatia</div>
+                    <div class="keyword-tag">🌸 Florais de Bach</div>
+                    <div class="keyword-tag">💊 Homeopatia</div>
+                    <div class="keyword-tag">🍵 Chás Medicinais</div>
+                    <div class="keyword-tag">💨 Ozonioterapia</div>
+                    <div class="keyword-tag">🧠 Equilíbrio emocional</div>
+                    <div class="keyword-tag">⚖️ Normas ANVISA</div>
+                    <div class="keyword-tag">🧪 Dinamização</div>
+                </div>
+            </div>
+            
+            <div class="main-content">
+                <h2>Conceitos Fundamentais</h2>
+                
+                <div class="therapy-section naturopatia">
+                    <div class="therapy-title">
+                        <span class="therapy-icon">🌿</span>
+                        Naturopatia
+                    </div>
+                    <div class="therapy-description">
+                        Prática de saúde natural que integra terapias para prevenção, tratamento e promoção da saúde com base na <em>vis medicatrix naturae</em> (poder de cura da natureza).
+                    </div>
+                    <div class="therapy-details">
+                        <div class="detail-item">
+                            <div class="detail-title">Enfoque Holístico</div>
+                            <div class="detail-content">Trata a pessoa como um todo (corpo físico, emocional e espiritual), evitando a fragmentação das necessidades do paciente.</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-title">Objetivos Principais</div>
+                            <div class="detail-content">
+                                <div class="list-item">Prevenir doenças</div>
+                                <div class="list-item">Estimular habilidades naturais de cura</div>
+                                <div class="list-item">Orientar mudanças de hábitos e estilo de vida saudável</div>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-title">Práticas Comuns</div>
+                            <div class="detail-content">Acupuntura, medicina botânica, hidroterapia, homeopatia, nutrição, shiatsu, aromaterapia, reflexologia, osteopatia, helioterapia.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="therapy-section florais">
+                    <div class="therapy-title">
+                        <span class="therapy-icon">🌸</span>
+                        Florais de Bach
+                    </div>
+                    <div class="therapy-description">
+                        Criados por Edward Bach nos anos 1930 para tratar desequilíbrios emocionais através de 38 essências florais específicas.
+                    </div>
+                    <div class="therapy-details">
+                        <div class="detail-item">
+                            <div class="detail-title">Processo de Preparo</div>
+                            <div class="detail-content">
+                                <strong>Método Solar:</strong> flores imersas em água, expostas ao sol por 4-5h<br>
+                                <strong>Método de Ebulição:</strong> fervura por alguns minutos<br>
+                                <strong>Resultado:</strong> tintura-mãe conservada com álcool ou brandy
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-title">Grupos Terapêuticos</div>
+                            <div class="detail-content">Medos, falta de interesse no presente, solidão, desespero, hipersensibilidade, excesso de cuidado com os outros, insegurança.</div>
+                        </div>
+                    </div>
+                    <div class="highlight-box">
+                        <div class="highlight-title">Regras OMS para Prescrição</div>
+                        <div class="highlight-content">
+                            Identificar causa dos sintomas • Hierarquizar emoções em desequilíbrio • Usar poucas essências • Observar estados emocionais perceptíveis • Tratar de fora para dentro
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="therapy-section homeopatia">
+                    <div class="therapy-title">
+                        <span class="therapy-icon">💊</span>
+                        Homeopatia
+                    </div>
+                    <div class="therapy-description">
+                        Fundada por Samuel Hahnemann (1796), baseia-se no princípio <em>Similia Similibus Curantur</em> - o semelhante cura o semelhante.
+                    </div>
+                    <div class="therapy-details">
+                        <div class="detail-item">
+                            <div class="detail-title">Fontes de Medicamentos</div>
+                            <div class="detail-content">
+                                <div class="list-item">Vegetal (folhas, flores, raízes, sementes, resinas)</div>
+                                <div class="list-item">Mineral (sais, metais)</div>
+                                <div class="list-item">Animal (venenos, secreções)</div>
+                                <div class="list-item">Produtos químicos e biológicos</div>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-title">Processo de Preparação</div>
+                            <div class="detail-content">
+                                <strong>Tintura-mãe:</strong> maceração vegetal em álcool ou trituração<br>
+                                <strong>Diluição:</strong> Hahnemanniana (CH/DH) ou Korsakoviana (K)<br>
+                                <strong>Dinamização:</strong> agitação vigorosa para potencializar ação energética
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-title">Formas Farmacêuticas</div>
+                            <div class="detail-content">Glóbulos de sacarose, soluções líquidas, comprimidos de lactose</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="therapy-section chas">
+                    <div class="therapy-title">
+                        <span class="therapy-icon">🍵</span>
+                        Chás Medicinais
+                    </div>
+                    <div class="therapy-description">
+                        Tradicionalmente usados para prevenção e tratamento, especialmente em comunidades de baixa renda, contêm compostos bioativos benéficos.
+                    </div>
+                    <div class="therapy-details">
+                        <div class="detail-item">
+                            <div class="detail-title">Benefícios</div>
+                            <div class="detail-content">Compostos bioativos como flavonoides, polifenóis, alcaloides, vitaminas e minerais.</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-title">Riscos</div>
+                            <div class="detail-content">Contaminação por microrganismos, metais pesados, pesticidas, toxicidade natural, interações medicamentosas, adulteração.</div>
+                        </div>
+                    </div>
+                    <div class="highlight-box">
+                        <div class="highlight-title">Resolução RDC nº 26/2014 - ANVISA</div>
+                        <div class="highlight-content">
+                            Chás medicinais são drogas vegetais preparadas por infusão, decocção ou maceração. Não precisam de registro, apenas notificação. Embalagem deve conter nome popular e científico, modo de preparo, advertências sobre uso tradicional.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="therapy-section ozonio">
+                    <div class="therapy-title">
+                        <span class="therapy-icon">💨</span>
+                        Ozonioterapia
+                    </div>
+                    <div class="therapy-description">
+                        Uso terapêutico do ozônio (O₃) para oxigenação tecidual, estímulo imunológico e combate a microrganismos.
+                    </div>
+                    <div class="therapy-details">
+                        <div class="detail-item">
+                            <div class="detail-title">Mecanismos de Ação</div>
+                            <div class="detail-content">
+                                <div class="list-item">Inativação de microrganismos</div>
+                                <div class="list-item">Estímulo ao metabolismo do oxigênio</div>
+                                <div class="list-item">Ativação do sistema imunológico</div>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-title">Aplicações</div>
+                            <div class="detail-content">Rejuvenescimento facial, tratamento de acne, queda capilar, redução de gordura localizada, celulite, estrias, melhora da circulação, regeneração tecidual.</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-title">Formas de Aplicação</div>
+                            <div class="detail-content">Injeções, óleos ozonizados, bolsas plásticas, água ozonizada</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-section">
+                    <div class="summary-title">📝 Resumo Executivo</div>
+                    <div class="summary-content">
+                        As terapias integrativas representam uma abordagem holística à saúde, tratando o paciente de forma global e complementando a medicina convencional. A naturopatia promove a autocura através de hábitos saudáveis e práticas naturais. Os Florais de Bach equilibram estados emocionais por meio de essências específicas. A homeopatia utiliza o princípio da similitude para estimular a cura natural. Os chás medicinais combinam tradição milenar com regulamentação moderna da ANVISA. A ozonioterapia oferece benefícios através da oxigenação tecidual e estímulo imunológico, com crescente evidência científica de sua eficácia.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
